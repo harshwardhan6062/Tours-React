@@ -26,15 +26,47 @@ export const Tours = () => {
     }, []);
 
     if(isLoading) {
-        return <h1>Loading...</h1>
+        return (
+            <main>
+                <div className="loading"></div>
+            </main>
+        );
+    }
+
+    if(tours.length == 0) {
+        return (
+            <main>
+                <div className='title'>
+                    <h2>No Tours Left! Do you wish to refresh the tours</h2>
+                    <button onClick={() => fetchTours()} className="btn">Refresh Tours</button>
+                </div>
+            </main>
+        );
+    }
+
+    const removeTour = (id) => {
+        const newTours = tours.filter((tour) => tour.id !== id);
+        setTours(newTours);
     }
 
     return (
-        <div>
-            {tours.map((tour) => {
-                return <Tour {...tour} />
-            })}
-        </div>
+        <main>
+            <section>
+                <div className="title">
+                    <h2>Our Tours</h2>
+                    <div className="title-underline"></div>
+                </div>
+                <div className="tours">
+                {tours.map((tour) => {
+                    return (
+                        <div>
+                            <Tour key={tour.id} {...tour} removeTour={removeTour}/>
+                        </div>
+                    )
+                })}
+                </div>
+            </section>
+        </main>
     )
 
 }
