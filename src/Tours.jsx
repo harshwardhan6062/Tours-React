@@ -38,7 +38,7 @@ export const Tours = () => {
             <main>
                 <div className='title'>
                     <h2>No Tours Left! Do you wish to refresh the tours</h2>
-                    <button onClick={() => fetchTours()} className="btn">Refresh Tours</button>
+                    <button onClick={() => fetchTours()} className="btn" style={{marginTop:'2rem'}}>Refresh Tours</button>
                 </div>
             </main>
         );
